@@ -1,0 +1,50 @@
+{
+  "name": "notes-app",
+  "version": "0.0.1",
+  "description": "A very simple notes app using Node.js, MongoDB, Typescript and JavaScript Technologies. Plus authentication using passport.",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsc -w & nodemon -w dist dist/index.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "typescript",
+    "mongodb",
+    "passport"
+  ],
+  "author": "Oscar Hernandez <os.hf024@gmail.com>",
+  "license": "MIT",
+  "repository": "github:/OscarEHF/notes-app.git",
+  "homepage": "https://github.com/OscarEHF/notes-app#readme",
+  "bugs": "https://github.com/OscarEHF/notes-app/issues",
+  "dependencies": {
+    "bcrypt": "~5.0.1",
+    "connect-flash": "^0.1.1",
+    "cors": "~2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "~4.17.1",
+    "express-handlebars": "~5.3.3",
+    "jsonwebtoken": "~8.5.1",
+    "method-override": "^3.0.0",
+    "mongoose": "~6.0.4",
+    "passport": "~0.4.1",
+    "passport-jwt": "~4.0.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/connect-flash": "0.0.37",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/express-handlebars": "^5.3.1",
+    "@types/jsonwebtoken": "^8.5.5",
+    "@types/method-override": "0.0.32",
+    "@types/mongoose": "^5.11.97",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^16.7.10",
+    "@types/passport": "^1.0.7",
+    "@types/passport-jwt": "^3.0.6",
+    "morgan": "~1.10.0",
+    "nodemon": "~2.0.12"
+  }
+}
