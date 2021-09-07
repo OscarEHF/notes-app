@@ -4,6 +4,10 @@ import cors from 'cors';
 import path from 'path';
 import exphbs from 'express-handlebars';
 
+import indexRoutes from "./routes/index.routes";
+import notesRoutes from "./routes/notes.routes";
+import usersRoutes from "./routes/users.routes";
+
 // Initializations
 const app: Application = express();
 
@@ -27,8 +31,8 @@ app.use(express.urlencoded({ extended: true })); //Return Nested Object
 app.use(express.json());
 
 // Routes
-app.get('/', (req: Request, res: Response) => {
-  res.render('index');
-});
+app.use('/', indexRoutes);
+app.use('/notes', notesRoutes);
+app.use('/users', usersRoutes);
 
 export default app;

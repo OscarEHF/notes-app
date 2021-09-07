@@ -6,7 +6,7 @@ import './database';
 // Starting the server
 app
   .listen(app.get('port'), () => {
-    console.log(`Server listening on port ${app.get('port')}`);
+    console.log(`Server listening at http://localhost:${app.get('port')}`);
   })
   .on('error', (err) => {
     console.log(err.stack);
