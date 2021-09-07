@@ -1,4 +1,7 @@
+require('dotenv').config();
+
 import app from './server';
+import './database';
 
 // Starting the server
 app
