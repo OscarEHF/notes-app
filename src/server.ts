@@ -36,6 +36,6 @@ app.use('/notes', notesRoutes);
 app.use('/users', usersRoutes);
 
 // Static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../src/public')));
 
 export default app;
