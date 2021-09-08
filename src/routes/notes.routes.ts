@@ -3,10 +3,13 @@ const router: Router = Router();
 
 import {
   getNotes,
-  addNote
+  addNote,
+  newNote
 } from '../controllers/notes.controllers';
 
-router.get('/', getNotes);
-router.get('/add', addNote);
+//     /notes/
+router.get( '/', getNotes);
+router.get( '/add', addNote);
+router.post('/new-note', newNote);
 
 export default router;
