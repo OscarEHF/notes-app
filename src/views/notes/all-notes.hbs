@@ -3,7 +3,7 @@
   <div class="col">
     <div class="card card-cover h-90 rounded-5">
       <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-        <h2 class="pt-2 mt-2 mb-4 display-6 lh-1 fw-bold crop-title">{{title}}</h2>
+        <h4 class="pt-2 mt-2 mb-4 display-6 fw-bold crop-title">{{title}}</h4>
         <p class="crop">{{description}}</p>
         <ul class="d-flex list-unstyled mt-auto">
           <li class="me-auto">
@@ -17,3 +17,18 @@
   </div>
   {{/each}}
 </div>
+
+{{#unless notes}}
+<div class="col-md-6 mx-auto">
+  <div class="rounded-4">
+    <a href="/notes/add" class="list-group-item card list-group-item-action d-flex gap-3 py-3" aria-current="true">
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div class="p-2">
+          <h4 class="display-6 fw-bold crop-title">There are not Notes yet</h4>
+          <p style="font-size: 1.25rem;">Click me to create one!</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+{{/unless}}
