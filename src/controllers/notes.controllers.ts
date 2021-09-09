@@ -1,16 +1,25 @@
 import { Request, RequestHandler, Response } from 'express';
 import Note from '../models/Note';
 
+import { timeago } from '../helpers';
+
 interface INote {
   title: string,
-  description: string
+  description: string,
+  createdAt: string,
+  updatedAt: string
 }
 
-export const getNotes: RequestHandler = (
+export const getNotes: RequestHandler = async (
   req: Request,
   res: Response
-): void => {
-  res.send('Notes from database');
+): Promise<void> => {
+  const notes: Array<INote> = await Note.find().sort({ date: 'desc'}).lean();
+  notes.forEach((note: INote) => {
+    const { createdAt } = note;
+    note.createdAt = timeago(createdAt);
+  });
+  res.render('notes/all-notes', { notes });
 };
 
 export const addNote: RequestHandler = (
@@ -45,7 +54,7 @@ export const newNote: RequestHandler = async (
   } else {
     const newNote = new Note({ title, description });
     await newNote.save();
-    return res.redirect('/notes');
+    res.redirect('/notes');
   }
 
 };

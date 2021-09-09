@@ -8,11 +8,7 @@ const Note = new Schema({
   description: {
     type: String,
     required: true
-  },
-  date: {
-    type: Date,
-    default: Date.now()
   }
-});
+}, { timestamps: true });
 
 export default mongoose.model('Note', Note);
