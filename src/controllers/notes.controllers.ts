@@ -23,7 +23,6 @@ export const getNotes: RequestHandler = async (
     } else {
       note.timeago = `Updated ${timeago(updatedAt)}`;
     }
-    console.log(note);
   });
   res.render('notes/all-notes', { notes });
 };
