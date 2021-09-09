@@ -3,3 +3,31 @@ body {
   background: -webkit-linear-gradient(to right, #4286f4, #373B44);
   background: linear-gradient(to right, #4286f4, #373B44);
 }
+
+.row>* {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.rounded-5 {
+  border-radius: 1em;
+}
+
+.crop-title, .crop {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.crop-title {
+  -webkit-line-clamp: 2;
+}
+
+.crop {
+  -webkit-line-clamp: 2;
+}
+
+.card:hover {
+  transform: scale(1.025);
+  box-shadow: 0 10px 20px 0 rgb(60 64 67 / 30%), 0 20px 60px 20px rgb(60 64 67 / 15%)
+}
