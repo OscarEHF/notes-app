@@ -10,9 +10,6 @@ export const getNotes: RequestHandler = (
   req: Request,
   res: Response
 ): void => {
-  res.header({
-    'Content-Type': 'text/html',
-  });
   res.send('Notes from database');
 };
 
@@ -20,9 +17,6 @@ export const addNote: RequestHandler = (
   req: Request,
   res: Response
 ): void => {
-  res.header({
-    'Content-Type': 'text/html',
-  });
   res.render('notes/new-note');
 };
 
@@ -43,7 +37,7 @@ export const newNote: RequestHandler = async (
   }
 
   if(errors.length>0) {
-    return res.render('notes/new-note', {
+    res.render('notes/new-note', {
       errors,
       title,
       description
