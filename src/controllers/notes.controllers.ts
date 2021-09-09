@@ -7,7 +7,8 @@ interface INote {
   title: string,
   description: string,
   createdAt: string,
-  updatedAt: string
+  updatedAt: string,
+  timeago: string
 }
 
 export const getNotes: RequestHandler = async (
@@ -16,8 +17,13 @@ export const getNotes: RequestHandler = async (
 ): Promise<void> => {
   const notes: Array<INote> = await Note.find().sort({ date: 'desc'}).lean();
   notes.forEach((note: INote) => {
-    const { createdAt } = note;
-    note.createdAt = timeago(createdAt);
+    const { createdAt, updatedAt } = note;
+    if(createdAt.valueOf() === updatedAt.valueOf()){
+      note.timeago = timeago(createdAt);
+    } else {
+      note.timeago = `Updated ${timeago(updatedAt)}`;
+    }
+    console.log(note);
   });
   res.render('notes/all-notes', { notes });
 };
