@@ -11,5 +11,6 @@ import {
 router.get( '/', getNotes);
 router.get( '/add', addNote);
 router.post('/new-note', newNote);
+router.post('/edit/:id', newNote);
 
 export default router;
