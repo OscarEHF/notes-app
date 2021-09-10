@@ -1,7 +1,7 @@
 <div class="row row-cols-lg-3 g-4 py-4 m-0">
   {{#each notes}}
   <div class="col mb-0">
-    <div class="card card-cover h-90 rounded-5">
+    <a href="/notes/edit/{{_id}}" class="card card-cover h-90 rounded-5">
       <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
         <h4 class="pt-2 mt-2 mb-4 display-6 fw-bold crop-title">{{title}}</h4>
         <p class="crop">{{description}}</p>
@@ -13,7 +13,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </a>
   </div>
   {{/each}}
 </div>
