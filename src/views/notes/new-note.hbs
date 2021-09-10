@@ -12,22 +12,78 @@
 </div>
 
 <div class="col-md-5 mx-auto">
-  <div class="modal-content rounded-5" style="border: none;">
+  <div class="modal-content rounded-5">
     <div class="ps-5 py-4 border-bottom-0">
       <h2 class="display-6 fw-bold crop-title">New Note</h2>
     </div>
     <div class="modal-body p-5 pt-0">
       <form action="/notes/new-note" method="POST">
         <div class="form-floating mb-3">
-          <input type="text" name="title" class="form-control rounded-4" id="title" autofocus>
-          <label for="title">Title</label>
+          <textarea name="title" class="form-control rounded-4" id="floatingTextarea" style="height: 78px; resize: none" id="title" autofocus>{{title}}</textarea>
+          <label for="title" style="opacity: 1;">
+            <span style="opacity: .65;">Title</span>
+            <small id="char-counter" class="text-muted px-2" style="opacity: 1;"></small>
+          </label>
         </div>
         <div class="form-floating mb-3">
-          <textarea name="description" class="form-control" id="floatingTextarea" style="height: 100px"></textarea>
-          <label for="floatingTextarea">Description</label>
+          <textarea name="description" class="form-control rounded-4" id="floatingTextarea2" style="height: 120px">{{description}}</textarea>
+          <label for="floatingTextarea" style="opacity: 1;">
+            <span style="opacity: .65;">Description</span>
+            <small id="char-counter2"class="text-muted px-2" style="opacity: 1;"></small>
+          </label>
         </div>
         <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Save</button>
       </form>
     </div>
   </div>
 </div>
+
+<script>
+  const title = document.getElementById('floatingTextarea');
+  const description = document.getElementById('floatingTextarea2');
+  const counter = document.getElementById('char-counter');
+  const counter2 = document.getElementById('char-counter2');
+  
+  const checkCounter = (e) => {
+    
+    const element = e.currentTarget;
+
+    let {
+      limit,
+      value,
+      counter,
+      originalClass
+    } = element;
+
+    let { length } = element.value;
+
+    if (length >= limit) {
+      element.value = value.slice(0, limit);
+      value = element.value;
+      length = element.value.length;
+    } else if (length >= limit - 20) {
+      counter.className = originalClass;
+      counter.className += ' text-warning ';// badge bg-warning
+      counter.className += 'fw-bold';
+    } else {
+      counter.className = `text-muted ${originalClass}`;
+    }
+    if (length >= limit - 10) {
+      counter.className = originalClass;
+      counter.className += ' text-danger ';// counter.className += ' badge bg-danger ';
+      counter.className += 'fw-bolder';
+    }
+    counter.innerHTML = `${length} / ${limit}`;
+  }
+
+  title.addEventListener('input', checkCounter);
+  title.limit = 50;
+  title.counter = counter;
+  title.originalClass = 'px-2';
+  counter.innerHTML = `${title.value.length} / ${title.limit}`;
+  description.addEventListener('input', checkCounter);
+  description.limit = 140;
+  description.counter = counter2;
+  description.originalClass = 'px-2';
+  counter2.innerHTML = `${description.value.length} / ${description.limit}`;
+</script>
