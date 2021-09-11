@@ -60,6 +60,7 @@ export const newNote: RequestHandler = async (
   } else {
     const newNote = new Note({ title, description });
     await newNote.save();
+    req.flash('success_msg', 'Note added successfully!');
     res.redirect('/notes');
   }
 
@@ -106,6 +107,7 @@ export const editNote: RequestHandler = async (
     });
   } else {
     await Note.findByIdAndUpdate(id, { title, description });
+    req.flash('success_msg', 'Note updated successfully!');
     res.redirect('/notes');
   }
 
@@ -116,5 +118,6 @@ export const deleteNote: RequestHandler = async (
   res: Response
 ): Promise<void> => {
   await Note.findByIdAndDelete(req.params.id);
+  req.flash('success_msg', 'Note deleted successfully!');
   res.redirect('/notes');
 };

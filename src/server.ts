@@ -1,9 +1,11 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
 import exphbs from 'express-handlebars';
 import methodOverride from 'method-override';
+import session from 'express-session';
+import flash from 'connect-flash';
 
 import indexRoutes from "./routes/index.routes";
 import notesRoutes from "./routes/notes.routes";
@@ -31,6 +33,21 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true })); //Return Nested Object
 app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+app.use(flash());
+
+// Global variables
+app.use((req: Request, res: Response, next: NextFunction): void => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  next();
+});
 
 // Routes
 app.use('/', indexRoutes);
