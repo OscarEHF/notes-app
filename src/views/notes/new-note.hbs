@@ -1,39 +1,45 @@
-<div class="col-md-6 mx-auto py-3">
-{{#each errors}}
-  <div href="#" class="alert alert-danger rounded-4">
-    <div class="d-flex gap-2 w-100 justify-content-between">
-      <div>
-        <h5 class="fw-bold mb-0">{{text}}</h5>
+<div class="py-3">
+  <div class="row justify-content-center py-1 my-3">
+    <div class="col-md-3"></div>
+    <div class="col-md-5">
+      <div class="modal-content rounded-5">
+        <div class="ps-5 py-4 border-bottom-0">
+          <h2 class="display-6 fw-bold m-0 crop-title">New Note</h2>
+        </div>
+        <div class="modal-body px-4 pt-0">
+          <form action="/notes/new-note" method="POST">
+            <div class="form-floating mb-3">
+              <textarea name="title" class="form-control fs-5 rounded-4" id="floatingTextarea" style="height: 88px; resize: none"
+                id="title" autofocus>{{title}}</textarea>
+              <label for="title" style="opacity: 1;">
+                <span style="opacity: .65;">Title</span>
+                <small id="char-counter" class="text-muted px-2" style="opacity: 1;"></small>
+              </label>
+            </div>
+            <div class="form-floating mb-3">
+              <textarea name="description" class="form-control fs-5 rounded-4" id="floatingTextarea2"
+                style="height: 168px">{{description}}</textarea>
+              <label for="floatingTextarea" style="opacity: 1;">
+                <span style="opacity: .65;">Description</span>
+                <small id="char-counter2" class="text-muted px-2" style="opacity: 1;"></small>
+              </label>
+            </div>
+            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Save</button>
+          </form>
+        </div>
       </div>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-  </div>
-{{/each}}
-</div>
-
-<div class="col-md-5 mx-auto">
-  <div class="modal-content rounded-5">
-    <div class="ps-5 py-4 border-bottom-0">
-      <h2 class="display-6 fw-bold crop-title">New Note</h2>
-    </div>
-    <div class="modal-body p-5 pt-0">
-      <form action="/notes/new-note" method="POST">
-        <div class="form-floating mb-3">
-          <textarea name="title" class="form-control rounded-4" id="floatingTextarea" style="height: 78px; resize: none" id="title" autofocus>{{title}}</textarea>
-          <label for="title" style="opacity: 1;">
-            <span style="opacity: .65;">Title</span>
-            <small id="char-counter" class="text-muted px-2" style="opacity: 1;"></small>
-          </label>
+    <div class="col-md-3 px-0">
+      {{#each errors}}
+      <div href="#" class="alert alert-danger rounded-4">
+        <div class="d-flex justify-content-between">
+          <div>
+            <small class="fw-bold mb-0">{{text}}</small>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <div class="form-floating mb-3">
-          <textarea name="description" class="form-control rounded-4" id="floatingTextarea2" style="height: 120px">{{description}}</textarea>
-          <label for="floatingTextarea" style="opacity: 1;">
-            <span style="opacity: .65;">Description</span>
-            <small id="char-counter2"class="text-muted px-2" style="opacity: 1;"></small>
-          </label>
-        </div>
-        <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Save</button>
-      </form>
+      </div>
+      {{/each}}
     </div>
   </div>
 </div>
