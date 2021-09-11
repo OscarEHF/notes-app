@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
 import exphbs from 'express-handlebars';
+import methodOverride from 'method-override';
 
 import indexRoutes from "./routes/index.routes";
 import notesRoutes from "./routes/notes.routes";
@@ -29,6 +30,7 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.urlencoded({ extended: true })); //Return Nested Object
 app.use(express.json());
+app.use(methodOverride('_method'));
 
 // Routes
 app.use('/', indexRoutes);

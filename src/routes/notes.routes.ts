@@ -1,16 +1,24 @@
 import { Router } from 'express';
-const router: Router = Router();
 
 import {
   getNotes,
   addNote,
-  newNote
+  newNote,
+  edit,
+  editNote
 } from '../controllers/notes.controllers';
 
-//     /notes/
+const router: Router = Router();
+
+// Get All Notes
 router.get( '/', getNotes);
+
+// New Note
 router.get( '/add', addNote);
 router.post('/new-note', newNote);
-router.post('/edit/:id', newNote);
+
+// Edit Note
+router.get( '/edit/:id', edit);
+router.put( '/edit-note/:id', editNote);
 
 export default router;

@@ -63,3 +63,27 @@ export const newNote: RequestHandler = async (
   }
 
 };
+
+export const edit: RequestHandler = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+
+  const note = await Note.findById(req.params.id).lean();
+  res.render('notes/edit-note', { note });
+
+};
+
+export const editNote: RequestHandler = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+
+  const { title, description }: INote = req.body;
+  const { id } = req.params;
+
+  console.log(title, description, id);
+  await Note.findByIdAndUpdate(id, { title, description });
+  res.redirect('/notes');
+
+};
