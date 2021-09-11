@@ -39,6 +39,10 @@ a, .nav-link {
   line-height: 3rem;
 }
 
+.crop {
+  -webkit-line-clamp: 4;
+}
+
 .col {
   padding: 12px;
 }

@@ -1,8 +1,8 @@
-<div class="row row-cols-lg-3 g-4 py-4 m-0">
+<div class="row row-cols-lg-3 py-2 m-0">
   {{#each notes}}
   <div class="col mb-0">
-    <a href="/notes/edit/{{_id}}" class="card card-cover h-90 rounded-5">
-      <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+    <a href="/notes/edit/{{_id}}" class="card card-cover rounded-5">
+      <div class="d-flex flex-column h-100 px-5 py-4 pb-3 text-shadow-1">
         <h4 class="pt-2 mt-2 mb-4 display-6 fw-bold crop-title">{{title}}</h4>
         <p class="crop fs-5">{{description}}</p>
         <ul class="d-flex list-unstyled mt-auto">
@@ -20,15 +20,13 @@
 
 {{#unless notes}}
 <div class="col-md-6 mx-auto text-center">
-  <div class="rounded-4">
-    <a href="/notes/add" class="list-group-item card list-group-item-action py-3" aria-current="true">
-      <div class="w-100 justify-content-between">
-        <div class="p-2">
-          <h4 class="display-6 fw-bold crop-title">There are not Notes yet</h4>
-          <p style="font-size: 1.25rem;">Click me to create one!</p>
-        </div>
+  <a href="/notes/add" class="card card-cover rounded-5 py-3 " aria-current="true">
+    <div class="w-100 justify-content-between">
+      <div class="p-2">
+        <h4 class="display-6 fw-bold crop-title">There are not Notes yet</h4>
+        <p style="font-size: 1.25rem;">Click me to create one!</p>
       </div>
-    </a>
-  </div>
+    </div>
+  </a>
 </div>
 {{/unless}}
