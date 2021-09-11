@@ -4,12 +4,12 @@ export const renderIndex: RequestHandler = (
   req: Request,
   res: Response
 ): void => {
-  res.send('Index');
+  res.render('index');
 }
 
 export const renderAbout: RequestHandler = (
   req: Request,
   res: Response
 ): void => {
-  res.send('About');
+  res.render('about');
 };
