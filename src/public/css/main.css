@@ -48,6 +48,31 @@ a, .nav-link {
 }
 
 .a:hover, .card:hover {
+  background: #F9F9F9;
+  transform: scale(1.03);
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.floating-button {
+  user-select: none;
+  cursor: pointer;
+  border-radius: 100%;
+  position: fixed;
+  background: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 101;
+  bottom: 28px;
+  right: 28px;
+  width: 56px;
+  height: 56px;
+  box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%);
+  border: 1px solid #d3d5d8;
+}
+
+.floating-button:hover {
+  background: #F9F9F9;
   transform: scale(1.03);
   box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
 }
