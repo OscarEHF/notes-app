@@ -8,7 +8,8 @@ interface INote {
   description: string,
   createdAt: string,
   updatedAt: string,
-  timeago: string
+  timeago: string,
+  _id: string
 }
 
 export const getNotes: RequestHandler = async (
@@ -69,7 +70,7 @@ export const edit: RequestHandler = async (
   res: Response
 ): Promise<void> => {
 
-  const note = await Note.findById(req.params.id).lean();
+  const note: INote = await Note.findById(req.params.id).lean();
   res.render('notes/edit-note', { note });
 
 };
@@ -82,8 +83,38 @@ export const editNote: RequestHandler = async (
   const { title, description }: INote = req.body;
   const { id } = req.params;
 
-  console.log(title, description, id);
-  await Note.findByIdAndUpdate(id, { title, description });
-  res.redirect('/notes');
+  const errors = [];
 
+  const note: INote = await Note.findById(req.params.id).lean();
+
+  if(!title) {
+    errors.push({ text: 'Please write a Title'});
+  } else {
+    note.title = title;// New title
+  }
+
+  if(!description) {
+    errors.push({ text: 'Please write a Description'});
+  } else {
+    note.description = description;// New description
+  }
+
+  if(errors.length>0) {
+    res.render('notes/edit-note', {
+      errors,
+      note
+    });
+  } else {
+    await Note.findByIdAndUpdate(id, { title, description });
+    res.redirect('/notes');
+  }
+
+};
+
+export const deleteNote: RequestHandler = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  await Note.findByIdAndDelete(req.params.id);
+  res.redirect('/notes');
 };

@@ -54,11 +54,16 @@
           <h2 class="display-6 fw-bold m-0">Delete note?</h2>
           <p class="fs-5 mb-0 py-2">This note will be permanently deleted from your account.</p>
         </div>
-        <div class="modal-footer flex-nowrap p-0 border-top">
-          <a href="/notes" class="btn btn-lg btn-link fs-5 text-decoration-none col-6 m-0 rounded-0 border-right"><strong>Yes, delete</strong></a>
-          <button type="button" class="btn btn-lg btn-link fs-5 text-decoration-none col-6 m-0 rounded-0"
-            data-bs-dismiss="modal">Cancel</button>
-        </div>
+        <form action="/notes/delete/{{note._id}}?_method=DELETE" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <div class="modal-footer flex-nowrap p-0 border-top">
+            <button type="submit" class="btn btn-lg btn-link fs-5 text-decoration-none col-6 m-0 rounded-0 border-right">
+              <strong class="text-danger">Yes, delete</strong>
+            </button>
+            <button type="button" class="btn btn-lg btn-link fs-5 text-decoration-none col-6 m-0 rounded-0"
+              data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
