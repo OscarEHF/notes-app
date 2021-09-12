@@ -4,14 +4,14 @@ export const signIn: RequestHandler = (
   req: Request,
   res: Response
 ): void => {
-  res.send('Signing in');
+  res.render('users/signin');
 }
 
 export const signUp: RequestHandler = (
   req: Request,
   res: Response
 ): void => {
-  res.send('Signing up');
+  res.render('users/signup');
 }
 
 export const signOut: RequestHandler = (
