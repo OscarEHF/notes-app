@@ -1,46 +1,50 @@
-<div class="py-3">
-  <div class="row justify-content-center">
-    <div class="col-md-3"></div>
-    <div class="col-md-5 mb-0">
-      <div class="modal-content rounded-5">
-        <div class="ps-4 py-4 border-bottom-0">
-          <h2 class="display-6 fw-bold m-0 crop-title">Edit Note</h2>
-        </div>
-        <div class="modal-body px-4 pt-0">
-          <form action="/notes/edit-note/{{note._id}}?_method=PUT" method="POST">
-            <input type="hidden" name="_method" value="PUT">
-            <div class="form-floating mb-3">
-              <textarea name="title" class="form-control fs-5 rounded-4" id="floatingTextarea"
-                style="height: 88px; resize: none" id="title" autofocus>{{note.title}}</textarea>
-              <label for="title" style="opacity: 1;">
-                <span style="opacity: .65;">Title</span>
-                <small id="char-counter" class="text-muted px-2" style="opacity: 1;"></small>
-              </label>
-            </div>
-            <div class="form-floating mb-3">
-              <textarea name="description" class="form-control fs-5 rounded-4" id="floatingTextarea2" style="height: 168px">{{note.description}}</textarea>
-              <label for="floatingTextarea" style="opacity: 1;">
-                <span style="opacity: .65;">Description</span>
-                <small id="char-counter2" class="text-muted px-2" style="opacity: 1;"></small>
-              </label>
-            </div>
-            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Save</button>
-            <button type="button" class="w-100 mb-2 btn btn-lg rounded-4 btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 px-0">
-      {{#each errors}}
-      <div href="#" class="alert alert-danger rounded-4">
-        <div class="d-flex justify-content-between">
-          <div>
-            <small class="fw-bold mb-0">{{text}}</small>
+<div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 82.5vh;">
+  <div class="w-100">
+    <div class="row justify-content-center">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 px-5 mb-0">
+        <div class="modal-content rounded-5">
+          <div class="ps-4 py-4 border-bottom-0">
+            <h2 class="display-6 fw-bold m-0 crop-title">Edit Note</h2>
           </div>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <div class="modal-body px-4 pt-0">
+            <form action="/notes/edit-note/{{note._id}}?_method=PUT" method="POST">
+              <input type="hidden" name="_method" value="PUT">
+              <div class="form-floating mb-3">
+                <textarea name="title" class="form-control fs-5 rounded-4" id="floatingTextarea"
+                  style="height: 88px; resize: none" id="title" autofocus>{{note.title}}</textarea>
+                <label for="title" style="opacity: 1;">
+                  <span style="opacity: .65;">Title</span>
+                  <small id="char-counter" class="text-muted px-2" style="opacity: 1;"></small>
+                </label>
+              </div>
+              <div class="form-floating mb-3">
+                <textarea name="description" class="form-control fs-5 rounded-4" id="floatingTextarea2"
+                  style="height: 168px">{{note.description}}</textarea>
+                <label for="floatingTextarea" style="opacity: 1;">
+                  <span style="opacity: .65;">Description</span>
+                  <small id="char-counter2" class="text-muted px-2" style="opacity: 1;"></small>
+                </label>
+              </div>
+              <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Save</button>
+              <button type="button" class="w-100 mb-2 btn btn-lg rounded-4 btn-danger" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Delete</button>
+            </form>
+          </div>
         </div>
       </div>
-      {{/each}}
+      <div class="col-md-3 px-0">
+        {{#each errors}}
+        <div href="#" class="alert alert-danger rounded-4">
+          <div class="d-flex justify-content-between">
+            <div>
+              <small class="fw-bold mb-0">{{text}}</small>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        </div>
+        {{/each}}
+      </div>
     </div>
   </div>
 </div>
@@ -67,6 +71,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <script>

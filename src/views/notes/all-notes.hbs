@@ -1,4 +1,4 @@
-<div class="row row-cols-lg-3 py-2 m-0">
+<div class="row w-100 row-cols-lg-3 m-0">
   {{#each notes}}
   <div class="col mb-0">
     <a href="/notes/edit/{{_id}}" class="card card-cover rounded-5">
@@ -19,8 +19,8 @@
 </div>
 
 {{#unless notes}}
-<div class="col-md-6 mx-auto text-center">
-  <a href="/notes/add" class="card card-cover rounded-5 py-3 " aria-current="true">
+<div class="d-flex flex-column align-items-center justify-content-center w-100 text-center my-3 mx-6 px-3">
+  <a href="/notes/add" class="card card-cover w-100 rounded-5 py-3 " aria-current="true">
     <div class="w-100 justify-content-between">
       <div class="p-2">
         <h4 class="display-6 fw-bold crop-title">There are not Notes yet</h4>

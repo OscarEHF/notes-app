@@ -87,3 +87,7 @@ a, .nav-link {
 .border-right {
   border-right: 1.5px solid #d3d5d8 !important;
 }
+
+.small-a:hover {
+  text-decoration: underline;
+}
