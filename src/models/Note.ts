@@ -1,6 +1,15 @@
 import mongoose, { Schema } from 'mongoose';
 
-const Note = new Schema({
+interface INote {
+  title: string,
+  description: string,
+  createdAt: string,
+  updatedAt: string,
+  timeago: string,
+  _id: string
+}
+
+const Note = new Schema<INote>({
   title: {
     type: String,
     required: true
@@ -11,4 +20,4 @@ const Note = new Schema({
   }
 }, { timestamps: true });
 
-export default mongoose.model('Note', Note);
+export default mongoose.model<INote>('Note', Note);

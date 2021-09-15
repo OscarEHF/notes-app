@@ -3,21 +3,12 @@ import Note from '../models/Note';
 
 import { timeago } from '../helpers';
 
-interface INote {
-  title: string,
-  description: string,
-  createdAt: string,
-  updatedAt: string,
-  timeago: string,
-  _id: string
-}
-
 export const getNotes: RequestHandler = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const notes: Array<INote> = await Note.find().sort({ date: 'desc'}).lean();
-  notes.forEach((note: INote) => {
+  const notes = await Note.find().sort({ date: 'desc'}).lean();
+  notes.forEach((note) => {
     const { createdAt, updatedAt } = note;
     if(createdAt.valueOf() === updatedAt.valueOf()){
       note.timeago = timeago(createdAt);
@@ -40,7 +31,7 @@ export const newNote: RequestHandler = async (
   res: Response
 ): Promise<void> => {
 
-  const { title, description }: INote = req.body;
+  const { title, description } = req.body;
   const errors = [];
 
   if(!title) {
@@ -71,7 +62,7 @@ export const edit: RequestHandler = async (
   res: Response
 ): Promise<void> => {
 
-  const note: INote = await Note.findById(req.params.id).lean();
+  const note = await Note.findById(req.params.id).lean();
   res.render('notes/edit-note', { note });
 
 };
@@ -81,23 +72,23 @@ export const editNote: RequestHandler = async (
   res: Response
 ): Promise<void> => {
 
-  const { title, description }: INote = req.body;
+  const { title, description } = req.body;
   const { id } = req.params;
 
   const errors = [];
 
-  const note: INote = await Note.findById(req.params.id).lean();
+  let note = await Note.findById(req.params.id).lean();
 
   if(!title) {
     errors.push({ text: 'Please write a Title'});
   } else {
-    note.title = title;// New title
+    note!.title ??= title;// New title
   }
 
   if(!description) {
     errors.push({ text: 'Please write a Description'});
   } else {
-    note.description = description;// New description
+    note!.description ??= description;// New description
   }
 
   if(errors.length>0) {
