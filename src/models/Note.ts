@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 interface INote {
   title: string,
@@ -20,4 +20,4 @@ const Note = new Schema<INote>({
   }
 }, { timestamps: true });
 
-export default mongoose.model<INote>('Note', Note);
+export default model<INote>('Note', Note);
