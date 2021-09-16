@@ -5,8 +5,8 @@ interface IUser {
   name: string,
   email: string,
   password: string,
-  encryptPassword: Function,
-  matchPassword: Function
+  encryptPassword: (password: string) => Promise<string>,
+  matchPassword: (password: string) => Promise<boolean>
 }
 
 const User = new Schema<IUser>({
@@ -25,13 +25,13 @@ const User = new Schema<IUser>({
   }
 });
 
-User.methods.encryptPassword = async (password) => {
+User.methods.encryptPassword = async (password): Promise<string> => {
   const salt = await bcrypt.genSalt(10);
   const hash = bcrypt.hash(password, salt);
   return hash;
 };
 
-User.methods.matchPassword = async function(password) {
+User.methods.matchPassword = async function(password): Promise<boolean> {
   return await bcrypt.compare(password, this.password);
 };
 
