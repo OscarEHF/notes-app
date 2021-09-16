@@ -1,34 +1,36 @@
-<div class="row w-100 row-cols-lg-3 m-0">
-  {{#each notes}}
-  <div class="col mb-0">
-    <a href="/notes/edit/{{_id}}" class="card card-cover rounded-5">
-      <div class="d-flex flex-column h-100 px-5 py-4 pb-3 text-shadow-1">
-        <h4 class="pt-2 mt-2 mb-4 display-6 fw-bold crop-title">{{title}}</h4>
-        <p class="crop fs-5">{{description}}</p>
-        <ul class="d-flex list-unstyled mt-auto">
-          <li class="me-auto">
-          </li>
-          <li class="d-flex align-items-center">
-            <small class="text-muted">{{timeago}}</small>
-          </li>
-        </ul>
+<div class="d-flex flex-column align-items-start justify-content-start" style="min-height: 80vh;">
+  {{> messages}}
+  <div class="row w-100 row-cols-lg-3 m-0">
+    {{#each notes}}
+    <div class="col mb-0">
+      <a href="/notes/edit/{{_id}}" class="card card-cover rounded-5">
+        <div class="d-flex flex-column h-100 px-5 py-4 pb-3 text-shadow-1">
+          <h4 class="pt-2 mt-2 mb-4 display-6 fw-bold crop-title">{{title}}</h4>
+          <p class="crop fs-5">{{description}}</p>
+          <ul class="d-flex list-unstyled mt-auto">
+            <li class="me-auto">
+            </li>
+            <li class="d-flex align-items-center">
+              <small class="text-muted">{{timeago}}</small>
+            </li>
+          </ul>
+        </div>
+      </a>
+    </div>
+    {{/each}}
+  </div>
+  {{#unless notes}}
+  <div class="d-flex flex-column align-items-center justify-content-center w-100 text-center my-3 mx-6 px-3">
+    <a href="/notes/add" class="card card-cover w-100 rounded-5 py-3 " aria-current="true">
+      <div class="w-100 justify-content-between">
+        <div class="p-2">
+          <h4 class="display-6 fw-bold crop-title">There are not Notes yet</h4>
+          <p style="font-size: 1.25rem;">Click me to create one!</p>
+        </div>
       </div>
     </a>
   </div>
-  {{/each}}
+  {{/unless}}
 </div>
-
-{{#unless notes}}
-<div class="d-flex flex-column align-items-center justify-content-center w-100 text-center my-3 mx-6 px-3">
-  <a href="/notes/add" class="card card-cover w-100 rounded-5 py-3 " aria-current="true">
-    <div class="w-100 justify-content-between">
-      <div class="p-2">
-        <h4 class="display-6 fw-bold crop-title">There are not Notes yet</h4>
-        <p style="font-size: 1.25rem;">Click me to create one!</p>
-      </div>
-    </div>
-  </a>
-</div>
-{{/unless}}
 
 <a href="/notes/add" class="floating-button display-6">+</a>
