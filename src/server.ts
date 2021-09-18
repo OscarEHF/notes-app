@@ -6,6 +6,9 @@ import exphbs from 'express-handlebars';
 import methodOverride from 'method-override';
 import session from 'express-session';
 import flash from 'connect-flash';
+import passport from 'passport';
+
+import './passport';
 
 import indexRoutes from "./routes/index.routes";
 import notesRoutes from "./routes/notes.routes";
@@ -40,6 +43,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 
 // Global variables

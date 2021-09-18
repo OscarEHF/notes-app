@@ -1,15 +1,19 @@
 import { Router } from 'express';
+import passport from 'passport';
+
 const router: Router = Router();
 
 import {
-  signIn,
   signUp,
   signUpForm,
+  signIn,
+  signInForm,
   signOut
 } from '../controllers/users.controllers';
 
 // Sign in
 router.get('/signin', signIn);
+router.post('/signin', signInForm);
 
 // Sign up
 router.get('/signup', signUp);

@@ -1,5 +1,6 @@
 import { Request, RequestHandler, Response } from 'express';
-import User from '../models/User';
+import passport from 'passport';
+import User, { IUser } from '../models/User';
 
 export const signIn: RequestHandler = (
   req: Request,
@@ -11,10 +12,10 @@ export const signIn: RequestHandler = (
 export const signUp: RequestHandler = (
   req: Request,
   res: Response
-  ): void => {
-    res.render('users/signup');
-  }
-  
+): void => {
+  res.render('users/signup');
+}
+
 export const signUpForm: RequestHandler = async (
   req: Request,
   res: Response
@@ -69,9 +70,16 @@ export const signUpForm: RequestHandler = async (
   
 };
 
+export const signInForm = passport.authenticate("local", {
+  successRedirect: "/notes",
+  failureRedirect: "/users/signin",
+  failureFlash: true,
+});
+
 export const signOut: RequestHandler = (
   req: Request,
   res: Response
 ): void => {
-  res.send('Signing out');
+  req.logout();
+  res.redirect('/');
 };
