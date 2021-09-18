@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+import { isAuthenticated } from '../helpers';
+
 import {
   getNotes,
   addNote,
@@ -12,18 +14,18 @@ import {
 const router: Router = Router();
 
 // Get All Notes
-router.get('/', getNotes);
+router.get('/', isAuthenticated, getNotes);
 
 // New Note
-router.get('/add', addNote);
-router.post('/new-note', newNote);
+router.get('/add', isAuthenticated, addNote);
+router.post('/new-note', isAuthenticated, newNote);
 
 // Edit Note
-router.get('/edit/:id', edit);
-router.put('/edit-note/:id', editNote);
+router.get('/edit/:id', isAuthenticated, edit);
+router.put('/edit-note/:id', isAuthenticated, editNote);
 
 // Delete Note
-router.delete('/delete/:id', deleteNote);
+router.delete('/delete/:id', isAuthenticated, deleteNote);
 
 
 export default router;

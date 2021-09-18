@@ -1,5 +1,6 @@
 import { Request, RequestHandler, Response } from 'express';
 import Note from '../models/Note';
+import mongoose,{ ObjectId } from 'mongoose';
 
 import { timeago } from '../helpers';
 
@@ -7,7 +8,8 @@ export const getNotes: RequestHandler = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const notes = await Note.find().sort({ date: 'desc'}).lean();
+  const id = (req.user as ObjectId) ?? new mongoose.Types.ObjectId('');
+  const notes = await Note.find({ user: id }).sort({ date: 'desc'}).lean();
   notes.forEach((note) => {
     const { createdAt, updatedAt } = note;
     if(createdAt.valueOf() === updatedAt.valueOf()){
@@ -49,7 +51,8 @@ export const newNote: RequestHandler = async (
       description
     });
   } else {
-    const newNote = new Note({ title, description });
+    let newNote = new Note({ title, description });
+    newNote.user = (req.user as ObjectId) ?? new mongoose.Types.ObjectId('');
     await newNote.save();
     req.flash('success_msg', 'Note added successfully!');
     res.redirect('/notes');
