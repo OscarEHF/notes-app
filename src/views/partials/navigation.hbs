@@ -2,13 +2,21 @@
   <div class="container d-flex flex-wrap">
     <ul class="nav me-auto">
       <li class="nav-item"><a href="/" class="nav-link px-2">Home</a></li>
-      <li class="nav-item"><a href="/notes" class="nav-link px-2">Notes</a></li>
-      <li class="nav-item"><a href="/notes/add" class="nav-link px-2">Add note</a></li>
+      {{#if user}}
+        <li class="nav-item"><a href="/notes" class="nav-link px-2">Notes</a></li>
+        <li class="nav-item"><a href="/notes/add" class="nav-link px-2">Add note</a></li>
+      {{/if}}
       <li class="nav-item"><a href="/about" class="nav-link px-2">About</a></li>
     </ul>
     <ul class="nav">
-      <li class="nav-item"><a href="/users/signin" class="nav-link mx-2 px-3">Sign in</a></li>
-      <li class="nav-item"><a href="/users/signup" class="nav-link mx-2 px-3 btn btn-primary text-light">Sign up</a></li>
+      {{#if user}}
+        <li class="nav-item"><a href="/users/signout" class="nav-link mx-2 px-3 btn btn-outline-primary text-primary">Sign out</a>
+        </li>
+      {{/if}}
+      {{#unless user}}
+        <li class="nav-item"><a href="/users/signin" class="nav-link mx-2 px-3 btn btn-outline-primary text-primary">Sign in</a></li>
+        <li class="nav-item"><a href="/users/signup" class="nav-link mx-2 px-3 btn btn-primary text-light">Sign up</a></li>
+      {{/unless}}
     </ul>
   </div>
 </nav>

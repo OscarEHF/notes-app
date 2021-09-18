@@ -91,3 +91,7 @@ a, .nav-link {
 .small-a:hover {
   text-decoration: underline;
 }
+
+.nav-link.btn-outline-primary:hover {
+  color: white !important;
+}
