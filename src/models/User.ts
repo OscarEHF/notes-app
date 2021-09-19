@@ -1,5 +1,5 @@
 import { Schema, model, ObjectId } from 'mongoose';
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 
 export interface IUser {
   id: ObjectId,
@@ -27,13 +27,13 @@ const User = new Schema<IUser>({
 });
 
 User.methods.encryptPassword = async (password): Promise<string> => {
-  const salt = await bcrypt.genSalt(10);
-  const hash = bcrypt.hash(password, salt);
+  const salt = await bcryptjs.genSalt(10);
+  const hash = bcryptjs.hash(password, salt);
   return hash;
 };
 
 User.methods.matchPassword = async function(password): Promise<boolean> {
-  return await bcrypt.compare(password, this.password);
+  return await bcryptjs.compare(password, this.password);
 };
 
 export default model<IUser>('User', User);
