@@ -53,6 +53,7 @@ app.use((req: Request, res: Response, next: NextFunction): void => {
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
   res.locals.user = req.user || null;
+  res.locals.url = req.url;
   next();
 });
 
@@ -61,7 +62,24 @@ app.use('/', indexRoutes);
 app.use('/notes', notesRoutes);
 app.use('/users', usersRoutes);
 
+
 // Static files
 app.use(express.static(path.join(__dirname, '../src/public')));
+
+// Intentional error
+app.use('/error-msg', (req: Request, res: Response) => {
+  res.render('errrrrrrrrr');
+});
+
+// 404 handler
+app.use((req: Request, res: Response) =>{
+  res.render('404');
+});
+
+// Error handler
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).render('error');
+});
 
 export default app;
