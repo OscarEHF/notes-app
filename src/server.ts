@@ -62,7 +62,6 @@ app.use('/', indexRoutes);
 app.use('/notes', notesRoutes);
 app.use('/users', usersRoutes);
 
-
 // Static files
 app.use(express.static(path.join(__dirname, '../src/public')));
 
@@ -73,7 +72,7 @@ app.use('/error-msg', (req: Request, res: Response) => {
 
 // 404 handler
 app.use((req: Request, res: Response) =>{
-  res.render('404');
+  res.status(404).render('404');
 });
 
 // Error handler
