@@ -33,7 +33,7 @@ app.all('/favicon.ico', (req: Request, res: Response) => res.status(204).end());
 // Middlewares
 app.use(morgan('dev'));
 app.use(cors());
-app.use(express.urlencoded({ extended: true })); //Return Nested Object
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(
