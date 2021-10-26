@@ -24,7 +24,11 @@ const User = new Schema<IUser>({
     type: String,
     required: true
   }
-});
+},
+{
+  versionKey: false
+}
+);
 
 User.methods.encryptPassword = async (password): Promise<string> => {
   const salt = await bcryptjs.genSalt(10);
