@@ -28,8 +28,6 @@ app.engine('.hbs', exphbs({
 }));
 app.set('view engine', '.hbs');
 
-app.all('/favicon.ico', (req: Request, res: Response) => res.status(204).end());
-
 // Middlewares
 app.use(morgan('dev'));
 app.use(cors());
