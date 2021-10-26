@@ -24,6 +24,10 @@ const Note = new Schema<INote>({
     required: true,
     ref: 'User'
   }
-}, { timestamps: true });
+}, 
+{
+  timestamps: true,
+  versionKey: false
+});
 
 export default model<INote>('Note', Note);
