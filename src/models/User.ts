@@ -31,9 +31,7 @@ const User = new Schema<IUser>({
 );
 
 User.methods.encryptPassword = async (password): Promise<string> => {
-  const salt = await bcryptjs.genSalt(10);
-  const hash = bcryptjs.hash(password, salt);
-  return hash;
+  return bcryptjs.hash(password, 10);
 };
 
 User.methods.matchPassword = async function(password): Promise<boolean> {
